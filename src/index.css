@@ -16,9 +16,9 @@
     --popover: 45 25% 94%;
     --popover-foreground: 30 20% 15%;
 
-    /* Muted blue-grey for header (like resilient web design) */
-    --primary: 210 20% 45%;
-    --primary-foreground: 45 30% 96%;
+    /* Saffron header - sacred color of the epic */
+    --primary: 30 85% 52%;
+    --primary-foreground: 30 20% 10%;
 
     --secondary: 35 25% 88%;
     --secondary-foreground: 30 20% 20%;
@@ -34,15 +34,15 @@
 
     --border: 35 20% 85%;
     --input: 35 20% 85%;
-    --ring: 210 20% 45%;
+    --ring: 30 85% 52%;
 
     --radius: 0.25rem;
 
     /* Book-specific tokens */
-    --book-header: 210 22% 49%;
-    --book-divider: 210 25% 70%;
+    --book-header: 30 80% 50%;
+    --book-divider: 30 40% 70%;
     --book-quote: 30 15% 35%;
-    --chapter-number: 25 60% 50%;
+    --chapter-number: 30 75% 45%;
 
     /* Typography */
     --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -96,8 +96,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-serif);
-    font-size: 1.25rem;
-    line-height: 1.8;
+    font-size: 1.375rem;
+    line-height: 1.9;
     font-weight: 400;
   }
 }
@@ -120,10 +120,10 @@
   .drop-cap::first-letter {
     float: left;
     font-family: var(--font-display);
-    font-size: 4.5rem;
-    line-height: 0.8;
-    padding-right: 0.75rem;
-    padding-top: 0.25rem;
+    font-size: 5.5rem;
+    line-height: 0.75;
+    padding-right: 1rem;
+    padding-top: 0.3rem;
     color: hsl(var(--chapter-number));
   }
 
@@ -195,20 +195,20 @@
 
   /* Book prose container */
   .prose-book {
-    max-width: 38rem;
+    max-width: 36rem;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
   .prose-book p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     text-align: justify;
     hyphens: auto;
   }
 
   .prose-book h2 {
     font-family: var(--font-display);
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 400;
     margin: 3rem 0 1.5rem;
     letter-spacing: 0.05em;
