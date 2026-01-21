@@ -1,96 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Ancient scroll-inspired palette */
+    --background: 45 30% 96%;
+    --foreground: 30 20% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 45 25% 94%;
+    --card-foreground: 30 20% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 45 25% 94%;
+    --popover-foreground: 30 20% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Muted blue-grey for header (like resilient web design) */
+    --primary: 210 20% 45%;
+    --primary-foreground: 45 30% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 30 20% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 30 15% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 25 70% 45%;
+    --accent-foreground: 45 30% 96%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 210 20% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Book-specific tokens */
+    --book-header: 210 22% 49%;
+    --book-divider: 210 25% 70%;
+    --book-quote: 30 15% 35%;
+    --chapter-number: 25 60% 50%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 30 15% 10%;
+    --foreground: 40 20% 90%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 30 15% 12%;
+    --card-foreground: 40 20% 90%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 30 15% 12%;
+    --popover-foreground: 40 20% 90%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 210 25% 55%;
+    --primary-foreground: 30 15% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 30 10% 18%;
+    --secondary-foreground: 40 20% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 30 10% 20%;
+    --muted-foreground: 40 15% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 25 60% 55%;
+    --accent-foreground: 30 15% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 210 25% 55%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --book-header: 210 18% 30%;
+    --book-divider: 210 15% 40%;
+    --book-quote: 40 15% 70%;
+    --chapter-number: 25 50% 60%;
   }
 }
 
@@ -99,7 +87,149 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  /* Book header bar */
+  .book-header {
+    background-color: hsl(var(--book-header));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Chapter title typography */
+  .chapter-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* Drop cap for chapter openings */
+  .drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: 0.8;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    color: hsl(var(--chapter-number));
+  }
+
+  /* Small caps for opening phrases */
+  .small-caps {
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  /* Block quote styling */
+  .book-quote {
+    font-style: italic;
+    color: hsl(var(--book-quote));
+    border-left: 3px solid hsl(var(--book-divider));
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .book-quote::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 0;
+    color: hsl(var(--book-divider));
+    position: relative;
+    top: 0.5rem;
+    margin-right: 0.25rem;
+  }
+
+  /* Decorative divider */
+  .chapter-divider {
+    width: 6rem;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--book-divider)),
+      transparent
+    );
+    margin: 3rem auto;
+  }
+
+  /* Navigation links */
+  .nav-link {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: hsl(var(--foreground));
+  }
+
+  /* Chapter number in TOC */
+  .toc-number {
+    font-family: var(--font-display);
+    color: hsl(var(--chapter-number));
+    font-weight: 500;
+  }
+
+  /* Sanskrit/transliterated text */
+  .sanskrit {
+    font-style: italic;
+    color: hsl(var(--accent));
+  }
+
+  /* Book prose container */
+  .prose-book {
+    max-width: 38rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .prose-book p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .prose-book h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 3rem 0 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .prose-book h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    font-style: italic;
+    margin: 2.5rem 0 1rem;
+  }
+
+  /* Cover page title */
+  .book-title {
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+  }
+
+  .book-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
   }
 }
