@@ -7,13 +7,13 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       {/* Hero Cover */}
       <section className="book-header flex-1 flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
-        <h1 className="book-title text-5xl md:text-7xl lg:text-8xl mb-6 text-primary-foreground">
+        <h1 className="book-title text-5xl md:text-7xl lg:text-8xl mb-6 text-[hsl(var(--book-header-text))]">
           Adi Parva
         </h1>
-        <p className="book-subtitle text-xl md:text-2xl text-primary-foreground/80 mb-2">
+        <p className="book-subtitle text-xl md:text-2xl text-[hsl(var(--book-header-text))]/80 mb-2">
           The Book of Beginnings
         </p>
-        <p className="text-sm tracking-[0.3em] uppercase text-primary-foreground/60 mt-8">
+        <p className="text-sm tracking-[0.3em] uppercase text-[hsl(var(--book-header-text))]/60 mt-8">
           From the Mahābhārata
         </p>
       </section>
