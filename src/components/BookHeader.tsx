@@ -11,7 +11,7 @@ const BookHeader = ({ currentChapter }: BookHeaderProps) => {
         to="/" 
         className="text-sm tracking-[0.25em] uppercase font-serif opacity-90 hover:opacity-100 transition-opacity"
       >
-        {currentChapter ? "Adi Parva — The Book of Beginnings" : "Mahābhārata"}
+        {currentChapter ? "Shreemad Bhagavad Gita" : "Bhagavad Gita"}
       </Link>
     </header>
   );
