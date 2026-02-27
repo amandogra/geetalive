@@ -98,6 +98,7 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-serif);
+  font-size: 1.25em;
   font-size: calc(1.125em + (2 - 1.125) * ((100vw - 20em) / (100 - 20)));
   line-height: 1.85;
   font-weight: 500;

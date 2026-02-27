@@ -114,7 +114,7 @@ const GitaChapter = () => {
                   <p className="font-serif leading-relaxed whitespace-pre-line">
                     {slok.slok}
                   </p>
-                  <p className="text-muted-foreground text-sm mt-2 italic whitespace-pre-line">
+                  <p className="text-muted-foreground mt-2 italic whitespace-pre-line">
                     {slok.transliteration}
                   </p>
                 </button>
@@ -141,7 +141,7 @@ const GitaChapter = () => {
                             <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
                               English Commentary
                             </summary>
-                            <p className="mt-2 text-sm">{commentary.ec}</p>
+                            <p className="mt-2">{commentary.ec}</p>
                           </details>
                         )}
                         {commentary.hc && (
@@ -149,7 +149,7 @@ const GitaChapter = () => {
                             <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
                               Hindi Commentary
                             </summary>
-                            <p className="mt-2 text-sm">{commentary.hc}</p>
+                            <p className="mt-2">{commentary.hc}</p>
                           </details>
                         )}
                         {commentary.sc && (
@@ -157,7 +157,7 @@ const GitaChapter = () => {
                             <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
                               Sanskrit Commentary
                             </summary>
-                            <p className="mt-2 text-sm">{commentary.sc}</p>
+                            <p className="mt-2">{commentary.sc}</p>
                           </details>
                         )}
                       </div>

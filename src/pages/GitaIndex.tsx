@@ -21,10 +21,10 @@ const GitaIndex = () => {
         <h1 className="book-title text-5xl md:text-7xl lg:text-8xl mb-6 text-[hsl(var(--book-header-text))]">
           Shreemad Bhagavad Gita
         </h1>
-        <p className="book-subtitle text-xl md:text-2xl text-[hsl(var(--book-header-text))]/80 mb-2">
+        <p className="book-subtitle mb-2">
           The Song of God
         </p>
-        <p className="text-sm tracking-[0.3em] uppercase text-[hsl(var(--book-header-text))]/60 mt-8">
+        <p className="tracking-[0.3em] uppercase text-[hsl(var(--book-header-text))]/60 mt-8">
           18 Chapters · 700 Verses
         </p>
       </section>
@@ -47,21 +47,21 @@ const GitaIndex = () => {
                       to={`/chapter/${chapter.chapter_number}`}
                       className="group flex items-baseline gap-4 py-3 border-b border-border/50 hover:border-foreground/30 transition-colors"
                     >
-                      <span className="toc-number text-lg w-8">
+                      <span className="toc-number w-8">
                         {chapter.chapter_number}
                       </span>
                       <span className="flex-1">
-                        <span className="font-serif text-xl group-hover:text-accent transition-colors">
+                        <span className="font-serif group-hover:text-accent transition-colors">
                           {chapter.translation}
                         </span>
-                        <span className="block text-muted-foreground text-base mt-1 italic">
+                        <span className="block text-muted-foreground mt-1 italic">
                           {chapter.meaning.en}
                         </span>
-                        <span className="block text-muted-foreground text-sm mt-0.5 sanskrit">
+                        <span className="block text-muted-foreground text-xl mt-0.5 sanskrit">
                           {chapter.name}
                         </span>
                       </span>
-                      <span className="text-muted-foreground text-sm">
+                      <span className="text-muted-foreground">
                         {chapter.verses_count} verses
                       </span>
                     </Link>
