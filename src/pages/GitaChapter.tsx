@@ -95,10 +95,7 @@ const GitaChapter = () => {
 
           <div className="space-y-6">
             {sloks.map((slok) => (
-              <div
-                key={slok._id}
-                className="border border-border/50 rounded-sm overflow-hidden"
-              >
+              <div key={slok._id} >
                 <button
                   onClick={() =>
                     setExpandedSlok(expandedSlok === slok.verse ? null : slok.verse)
@@ -106,8 +103,8 @@ const GitaChapter = () => {
                   className="w-full text-left p-5 hover:bg-secondary/30 transition-colors cursor-pointer"
                 >
                   <div className="flex items-baseline gap-3 mb-2">
-                    <span className="toc-number text-sm">{slok.verse}</span>
-                    <span className="font-serif font-semibold text-sm text-muted-foreground">
+                    <span className="toc-number text-5xl">{slok.verse}</span>
+                    <span className="font-serif font-semibold text-md text-muted-foreground">
                       {slok._id}
                     </span>
                   </div>

@@ -76,7 +76,7 @@ const GitaIndex = () => {
       {/* Footer */}
       <footer className="py-12 text-center text-muted-foreground text-sm">
         <p className="italic">
-          Powered by Vedic Scriptures API
+          Powered by <a href="https://vedicscriptures.github.io">Vedic Scriptures API</a>
         </p>
         <p className="mt-2 tracking-wider">
           A web book designed to be read
