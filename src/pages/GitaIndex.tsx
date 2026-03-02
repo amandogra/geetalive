@@ -15,53 +15,48 @@ const GitaIndex = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="page-shell--flex">
       {/* Hero Cover */}
-      <section className="book-header flex-1 flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
-        <h1 className="book-title text-5xl md:text-7xl lg:text-8xl mb-6 text-[hsl(var(--book-header-text))]">
-          Shreemad Bhagavad Gita
+      <section className="book-header hero-cover">
+        <h1 className="book-title">
+          BhagavaD GitA
         </h1>
-        <p className="book-subtitle mb-2">
+        <p className="book-subtitle">
           The Song of God
         </p>
-        <p className="tracking-[0.3em] uppercase text-[hsl(var(--book-header-text))]/60 mt-8">
+        <p className="hero-tagline">
           18 Chapters · 700 Verses
         </p>
       </section>
 
       {/* Table of Contents */}
-      <section className="py-20 px-6">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-display text-2xl tracking-[0.2em] text-center mb-16 text-muted-foreground">
-            CONTENTS
-          </h2>
+      <section className="toc-section">
+        <div className="toc-container">
+          <h2 className="toc-heading">CONTENTS</h2>
 
           {loading ? (
-            <p className="text-center text-muted-foreground italic">Loading chapters…</p>
+            <p className="loading-text">Loading chapters…</p>
           ) : (
             <nav>
-              <ul className="space-y-6">
+              <ul className="toc-list">
                 {chapters.map((chapter) => (
                   <li key={chapter.chapter_number}>
-                    <Link
-                      to={`/chapter/${chapter.chapter_number}`}
-                      className="group flex items-baseline gap-4 py-3 border-b border-border/50 hover:border-foreground/30 transition-colors"
-                    >
-                      <span className="toc-number w-8">
+                    <Link to={`/chapter/${chapter.chapter_number}`} className="toc-item">
+                      <span className="toc-number toc-item__number">
                         {chapter.chapter_number}
                       </span>
-                      <span className="flex-1">
-                        <span className="font-serif group-hover:text-accent transition-colors">
+                      <span className="toc-item__body">
+                        <span className="toc-item__title">
                           {chapter.translation}
                         </span>
-                        <span className="block text-muted-foreground mt-1 italic">
-                          {chapter.meaning.en}
-                        </span>
-                        <span className="block text-muted-foreground text-xl mt-0.5 sanskrit">
+                        <span className="toc-item__sanskrit sanskrit">
                           {chapter.name}
                         </span>
+                        <span className="toc-item__meaning">
+                          {chapter.meaning.en}
+                        </span>
                       </span>
-                      <span className="text-muted-foreground">
+                      <span className="toc-item__verses">
                         {chapter.verses_count} verses
                       </span>
                     </Link>
@@ -74,11 +69,11 @@ const GitaIndex = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 text-center text-muted-foreground text-sm">
-        <p className="italic">
-          Powered by <a href="https://vedicscriptures.github.io">Vedic Scriptures API</a>
+      <footer className="site-footer">
+        <p>
+          <em>Powered by <a href="https://vedicscriptures.github.io">Vedic Scriptures API</a></em>
         </p>
-        <p className="mt-2 tracking-wider">
+        <p>
           A web book designed to be read
         </p>
       </footer>

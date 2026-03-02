@@ -9,36 +9,30 @@ interface ChapterLayoutProps {
   nextChapter?: { slug: string; title: string };
 }
 
-const ChapterLayout = ({ 
-  chapterNumber, 
-  title, 
-  children, 
-  prevChapter, 
-  nextChapter 
+const ChapterLayout = ({
+  chapterNumber,
+  title,
+  children,
+  prevChapter,
+  nextChapter,
 }: ChapterLayoutProps) => {
   return (
-    <div className="min-h-screen">
+    <div className="page-shell">
       <BookHeader currentChapter={title} />
-      
-      <article className="py-16">
-        <header className="text-center mb-16">
-          <h1 className="chapter-title text-5xl md:text-6xl lg:text-7xl mb-4">
-            {title}
-          </h1>
+
+      <article className="chapter-article">
+        <header className="chapter-header">
+          <h1 className="chapter-title">{title}</h1>
           {chapterNumber !== undefined && (
-            <p className="text-chapter-number font-display tracking-[0.3em] text-sm">
-              CHAPTER {chapterNumber}
-            </p>
+            <p className="chapter-label">CHAPTER {chapterNumber}</p>
           )}
         </header>
-        
+
         <div className="chapter-divider" />
-        
-        <div className="prose-book">
-          {children}
-        </div>
+
+        <div className="prose-book">{children}</div>
       </article>
-      
+
       <ChapterNav prevChapter={prevChapter} nextChapter={nextChapter} />
     </div>
   );

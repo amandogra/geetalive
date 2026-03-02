@@ -1,87 +1,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ───────────────────────────────────────
+   Design tokens
+   ─────────────────────────────────────── */
 
-@layer base {
-  :root {
-    /* Ancient scroll-inspired palette */
-    --background: 45 30% 96%;
-    --foreground: 30 25% 12%;
+:root {
+  /* Ancient scroll-inspired palette */
+  --background: 45 30% 96%;
+  --foreground: 30 25% 12%;
 
-    --card: 45 25% 94%;
-    --card-foreground: 30 25% 12%;
+  --card: 45 25% 94%;
+  --card-foreground: 30 25% 12%;
 
-    --popover: 45 25% 94%;
-    --popover-foreground: 30 25% 12%;
+  --popover: 45 25% 94%;
+  --popover-foreground: 30 25% 12%;
 
-    /* Saffron header - sacred color of the epic */
-    --primary: 30 85% 50%;
-    --primary-foreground: 0 0% 100%;
+  /* Saffron header – sacred colour */
+  --primary: 30 85% 50%;
+  --primary-foreground: 0 0% 100%;
 
-    --secondary: 35 25% 88%;
-    --secondary-foreground: 30 25% 15%;
+  --secondary: 35 25% 88%;
+  --secondary-foreground: 30 25% 15%;
 
-    --muted: 40 20% 90%;
-    --muted-foreground: 30 20% 35%;
+  --muted: 40 20% 90%;
+  --muted-foreground: 30 20% 35%;
 
-    --accent: 25 75% 42%;
-    --accent-foreground: 0 0% 100%;
+  --accent: 25 75% 42%;
+  --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
 
-    --border: 35 20% 82%;
-    --input: 35 20% 82%;
-    --ring: 30 85% 50%;
+  --border: 35 20% 82%;
+  --input: 35 20% 82%;
+  --ring: 30 85% 50%;
 
-    --radius: 0.25rem;
+  --radius: 0.25rem;
 
-    /* Book-specific tokens */
-    --book-header: 30 80% 48%;
-    --book-header-text: 0 0% 100%;
-    --book-divider: 30 50% 65%;
-    --book-quote: 30 20% 30%;
-    --chapter-number: 30 80% 42%;
+  /* Book-specific tokens */
+  --book-header: 30 80% 48%;
+  --book-header-text: 0 0% 100%;
+  --book-divider: 30 50% 65%;
+  --book-quote: 30 20% 30%;
+  --chapter-number: 30 80% 42%;
 
-    /* Typography */
-    --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-  }
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+}
 
-  .dark {
-    --background: 25 20% 8%;
-    --foreground: 40 25% 88%;
+.dark {
+  --background: 25 20% 8%;
+  --foreground: 40 25% 88%;
 
-    --card: 25 18% 10%;
-    --card-foreground: 40 25% 88%;
+  --card: 25 18% 10%;
+  --card-foreground: 40 25% 88%;
 
-    --popover: 25 18% 10%;
-    --popover-foreground: 40 25% 88%;
+  --popover: 25 18% 10%;
+  --popover-foreground: 40 25% 88%;
 
-    --primary: 30 70% 55%;
-    --primary-foreground: 25 20% 8%;
+  --primary: 30 70% 55%;
+  --primary-foreground: 25 20% 8%;
 
-    --secondary: 25 15% 15%;
-    --secondary-foreground: 40 25% 88%;
+  --secondary: 25 15% 15%;
+  --secondary-foreground: 40 25% 88%;
 
-    --muted: 25 12% 18%;
-    --muted-foreground: 40 18% 55%;
+  --muted: 25 12% 18%;
+  --muted-foreground: 40 18% 55%;
 
-    --accent: 30 65% 58%;
-    --accent-foreground: 25 20% 8%;
+  --accent: 30 65% 58%;
+  --accent-foreground: 25 20% 8%;
 
-    --border: 25 12% 20%;
-    --input: 25 12% 20%;
-    --ring: 30 70% 55%;
+  --border: 25 12% 20%;
+  --input: 25 12% 20%;
+  --ring: 30 70% 55%;
 
-    --book-header: 25 25% 12%;
-    --book-header-text: 30 60% 70%;
-    --book-divider: 30 30% 40%;
-    --book-quote: 40 20% 65%;
-    --chapter-number: 30 55% 60%;
-  }
+  --book-header: 25 25% 12%;
+  --book-header-text: 30 60% 70%;
+  --book-divider: 30 30% 40%;
+  --book-quote: 40 20% 65%;
+  --chapter-number: 30 55% 60%;
+}
+
+/* ───────────────────────────────────────
+   Reset / base
+   ─────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -103,6 +113,10 @@ body {
   line-height: 1.85;
   font-weight: 500;
 }
+
+/* ───────────────────────────────────────
+   Typography scale
+   ─────────────────────────────────────── */
 
 h1 {
   font-size: 2.25em;
@@ -145,156 +159,593 @@ h5 {
 }
 
 @media all and (min-width: 100em) {
-  h1 {
-    font-size: 5.625em;
-  }
-  h2 {
-    font-size: 2.25em;
-  }
-  h3 {
-    font-size: 1.875em;
-  }
-  h4 {
-    font-size: 1.6875em;
-  }
-  h5 {
-    font-size: 1.5em;
-  }
+  h1 { font-size: 5.625em; }
+  h2 { font-size: 2.25em; }
+  h3 { font-size: 1.875em; }
+  h4 { font-size: 1.6875em; }
+  h5 { font-size: 1.5em; }
 }
 
-@layer components {
-  /* Book header bar */
-  .book-header {
-    background-color: hsl(var(--book-header));
-    color: hsl(var(--book-header-text));
-  }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-  /* Chapter title typography */
-  .chapter-title {
-    font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
+/* ───────────────────────────────────────
+   Book-specific component classes
+   ─────────────────────────────────────── */
 
-  /* Drop cap for chapter openings */
-  .drop-cap::first-letter {
-    float: left;
-    font-family: var(--font-display);
-    font-size: 5.5rem;
-    line-height: 0.75;
-    padding-right: 1rem;
-    padding-top: 0.3rem;
-    color: hsl(var(--chapter-number));
-    font-weight: 600;
-  }
+/* Book header bar */
+.book-header {
+  background-color: hsl(var(--book-header));
+  color: hsl(var(--book-header-text));
+  text-align: center;
+  padding: 0.75rem 0;
+}
 
-  /* Small caps for opening phrases */
-  .small-caps {
-    font-variant: small-caps;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-  }
+.book-header-link {
+  display: inline-block;
+  font-size: 0.875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-family: var(--font-serif);
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
 
-  /* Block quote styling */
-  .book-quote {
-    font-style: italic;
-    color: hsl(var(--book-quote));
-    border-left: 3px solid hsl(var(--book-divider));
-    padding-left: 1.5rem;
-    margin: 2rem 0;
-    font-weight: 500;
-  }
+.book-header-link:hover {
+  opacity: 1;
+}
 
-  .book-quote::before {
-    content: '"';
-    font-family: var(--font-display);
-    font-size: 3rem;
-    line-height: 0;
-    color: hsl(var(--book-divider));
-    position: relative;
-    top: 0.5rem;
-    margin-right: 0.25rem;
-  }
+/* Chapter title typography */
+.chapter-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
 
-  /* Decorative divider */
-  .chapter-divider {
-    width: 6rem;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--book-divider)),
-      transparent
-    );
-    margin: 3rem auto;
-  }
+@media (min-width: 768px) {
+  .chapter-title { font-size: 3.75rem; }
+}
 
-  /* Navigation links */
-  .nav-link {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-weight: 600;
-    color: hsl(var(--muted-foreground));
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
+@media (min-width: 1024px) {
+  .chapter-title { font-size: 4.5rem; }
+}
 
-  .nav-link:hover {
-    color: hsl(var(--foreground));
-  }
+/* Drop cap for chapter openings */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  line-height: 0.75;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  color: hsl(var(--chapter-number));
+  font-weight: 600;
+}
 
-  /* Chapter number in TOC */
-  .toc-number {
-    font-family: var(--font-display);
-    color: hsl(var(--chapter-number));
-    font-weight: 600;
-  }
+/* Small caps for opening phrases */
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
 
-  /* Sanskrit/transliterated text */
-  .sanskrit {
-    font-style: italic;
-    color: hsl(var(--accent));
-  }
+/* Block quote styling */
+.book-quote {
+  font-style: italic;
+  color: hsl(var(--book-quote));
+  border-left: 3px solid hsl(var(--book-divider));
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-weight: 500;
+}
 
-  /* Book prose container */
-  .prose-book {
-    max-width: 45rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+.book-quote::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 0;
+  color: hsl(var(--book-divider));
+  position: relative;
+  top: 0.5rem;
+  margin-right: 0.25rem;
+}
 
-  .prose-book p {
-    margin-bottom: 1.75rem;
-    text-align: justify;
-    hyphens: auto;
-  }
+/* Decorative divider */
+.chapter-divider {
+  width: 6rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--book-divider)), transparent);
+  margin: 3rem auto;
+}
 
-  .prose-book h2 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 3rem 0 1.5rem;
-    letter-spacing: 0.05em;
-  }
+/* Navigation links */
+.nav-link {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
 
-  .prose-book h3 {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 700;
-    font-style: italic;
-    margin: 2.5rem 0 1rem;
-  }
+.nav-link:hover {
+  color: hsl(var(--foreground));
+}
 
-  /* Cover page title */
-  .book-title {
-    font-family: var(--font-display);
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
+/* Chapter number in TOC */
+.toc-number {
+  font-family: var(--font-display);
+  color: hsl(var(--chapter-number));
+  font-weight: 600;
+}
 
-  .book-subtitle {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 500;
-  }
+/* Sanskrit/transliterated text */
+.sanskrit {
+  font-style: italic;
+  color: hsl(var(--accent));
+}
+
+/* Book prose container */
+.prose-book {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.prose-book p {
+  margin-bottom: 1.75rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.prose-book h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 3rem 0 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.prose-book h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-style: italic;
+  margin: 2.5rem 0 1rem;
+}
+
+/* Cover page title */
+.book-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.book-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ───────────────────────────────────────
+   Page-level layouts
+   ─────────────────────────────────────── */
+
+.page-shell {
+  min-height: 100vh;
+}
+
+.page-shell--flex {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero / cover section */
+.hero-cover {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.hero-cover .book-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: hsl(var(--book-header-text));
+}
+
+@media (min-width: 768px) {
+  .hero-cover .book-title { font-size: 4.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .hero-cover .book-title { font-size: 6rem; }
+}
+
+.hero-tagline {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: hsl(var(--book-header-text) / 0.6);
+  margin-top: 2rem;
+}
+
+/* Table of contents section */
+.toc-section {
+  padding: 5rem 1.5rem;
+}
+
+.toc-container {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.toc-heading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+  transition: border-color 0.2s ease;
+}
+
+.toc-item:hover {
+  border-color: hsl(var(--foreground) / 0.3);
+}
+
+.toc-item__number {
+  width: 2rem;
+  flex-shrink: 0;
+}
+
+.toc-item__body {
+  flex: 1;
+}
+
+.toc-item__title {
+  font-family: var(--font-serif);
+  transition: color 0.2s ease;
+}
+
+.toc-item:hover .toc-item__title {
+  color: hsl(var(--accent));
+}
+
+.toc-item__meaning {
+  display: block;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.toc-item__sanskrit {
+  display: block;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.25rem;
+  margin-top: 0.125rem;
+}
+
+.toc-item__verses {
+  flex-shrink: 0;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Loading / empty states */
+.loading-text {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+}
+
+.loading-state {
+  padding: 8rem 0;
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+}
+
+/* Footer */
+.site-footer {
+  padding: 3rem 0;
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+}
+
+.site-footer a {
+  text-decoration: underline;
+}
+
+.site-footer p + p {
+  margin-top: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+/* ───────────────────────────────────────
+   Chapter page
+   ─────────────────────────────────────── */
+
+.chapter-article {
+  padding: 4rem 0;
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.chapter-label {
+  color: hsl(var(--chapter-number));
+  font-family: var(--font-display);
+  letter-spacing: 0.3em;
+  font-size: 0.875rem;
+}
+
+.chapter-meaning {
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.chapter-summary {
+  margin-bottom: 4rem;
+}
+
+.verses-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.verse-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Individual verse card */
+.verse-button {
+  display: flex;
+  gap: 1.25rem;
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.verse-button:hover {
+  background-color: hsl(var(--secondary) / 0.3);
+}
+
+.verse-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.verse-number {
+  font-size: 3rem;
+}
+
+.verse-id {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.verse-slok {
+  font-family: var(--font-serif);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.verse-transliteration {
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.5rem;
+  font-style: italic;
+  white-space: pre-line;
+}
+
+/* Commentary panel */
+.commentary-panel {
+  border-top: 1px solid hsl(var(--border) / 0.5);
+  padding: 1.25rem;
+  background-color: hsl(var(--secondary) / 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.commentary-heading {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.commentary-item {
+  border-bottom: 1px solid hsl(var(--border) / 0.3);
+  padding-bottom: 1rem;
+}
+
+.commentary-item:last-child {
+  border-bottom: none;
+}
+
+.commentary-author {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--accent));
+  cursor: pointer;
+}
+
+.commentary-text {
+  margin-bottom: 0.5rem;
+}
+
+.commentary-text--muted {
+  margin-bottom: 0.5rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.commentary-details {
+  margin-top: 0.5rem;
+}
+
+.commentary-summary {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.commentary-summary:hover {
+  color: hsl(var(--foreground));
+}
+
+.commentary-details p {
+  margin-top: 0.5rem;
+}
+
+/* ───────────────────────────────────────
+   Chapter navigation (prev/next)
+   ─────────────────────────────────────── */
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  max-width: 48rem;
+  margin: 4rem auto 0;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.chapter-nav__side {
+  flex: 1;
+}
+
+.chapter-nav__side--end {
+  flex: 1;
+  text-align: right;
+}
+
+.chapter-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chapter-nav__link:hover .chapter-nav__label {
+  text-decoration: underline;
+}
+
+.chapter-nav__arrow {
+  font-size: 1.125rem;
+}
+
+.chapter-nav__center {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.chapter-nav__center:hover {
+  text-decoration: underline;
+}
+
+/* ───────────────────────────────────────
+   Theme toggle
+   ─────────────────────────────────────── */
+
+.theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  z-index: 50;
+  color: hsl(var(--foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.theme-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ───────────────────────────────────────
+   404 page
+   ─────────────────────────────────────── */
+
+.not-found {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(var(--muted));
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.not-found p {
+  font-size: 1.25rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1rem;
+}
+
+.not-found a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+.not-found a:hover {
+  color: hsl(var(--primary) / 0.9);
 }
