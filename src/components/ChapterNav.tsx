@@ -7,34 +7,25 @@ interface ChapterNavProps {
 
 const ChapterNav = ({ prevChapter, nextChapter }: ChapterNavProps) => {
   return (
-    <nav className="flex justify-between items-center py-12 px-6 max-w-3xl mx-auto border-t border-border mt-16">
-      <div className="flex-1">
+    <nav className="chapter-nav">
+      <div className="chapter-nav__side">
         {prevChapter && (
-          <Link 
-            to={`/${prevChapter.slug}`}
-            className="nav-link group flex items-center gap-2"
-          >
-            <span className="text-lg">←</span>
-            <span className="group-hover:underline">{prevChapter.title}</span>
+          <Link to={`/${prevChapter.slug}`} className="nav-link chapter-nav__link">
+            <span className="chapter-nav__arrow">←</span>
+            <span className="chapter-nav__label">{prevChapter.title}</span>
           </Link>
         )}
       </div>
-      
-      <Link 
-        to="/" 
-        className="nav-link text-xs tracking-[0.2em] uppercase hover:underline"
-      >
+
+      <Link to="/" className="nav-link chapter-nav__center">
         Contents
       </Link>
-      
-      <div className="flex-1 text-right">
+
+      <div className="chapter-nav__side--end">
         {nextChapter && (
-          <Link 
-            to={`/${nextChapter.slug}`}
-            className="nav-link group flex items-center justify-end gap-2"
-          >
-            <span className="group-hover:underline">{nextChapter.title}</span>
-            <span className="text-lg">→</span>
+          <Link to={`/${nextChapter.slug}`} className="nav-link chapter-nav__link">
+            <span className="chapter-nav__label">{nextChapter.title}</span>
+            <span className="chapter-nav__arrow">→</span>
           </Link>
         )}
       </div>

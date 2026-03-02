@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import BookHeader from "@/components/BookHeader";
 import ChapterNav from "@/components/ChapterNav";
 import { fetchChapter, fetchSlok, type ChapterInfo, type Slok } from "@/lib/api";
@@ -20,7 +20,6 @@ const GitaChapter = () => {
     fetchChapter(chNum)
       .then(async (chapData) => {
         setChapter(chapData);
-        // Fetch all sloks for this chapter
         const slokPromises = Array.from(
           { length: chapData.verses_count },
           (_, i) => fetchSlok(chNum, i + 1)
@@ -44,46 +43,38 @@ const GitaChapter = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen">
+      <div className="page-shell">
         <BookHeader currentChapter="Loading…" />
-        <div className="py-32 text-center text-muted-foreground italic">
-          Loading chapter…
-        </div>
+        <div className="loading-state">Loading chapter…</div>
       </div>
     );
   }
 
   if (!chapter) {
     return (
-      <div className="min-h-screen">
+      <div className="page-shell">
         <BookHeader />
-        <div className="py-32 text-center text-muted-foreground">
-          Chapter not found.
-        </div>
+        <div className="loading-state">Chapter not found.</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="page-shell">
       <BookHeader currentChapter={chapter.translation} />
 
-      <article className="py-16">
-        <header className="text-center mb-16">
-          <h1 className="chapter-title text-5xl md:text-6xl lg:text-7xl mb-4">
-            {chapter.translation}
-          </h1>
-          <p className="text-chapter-number font-display tracking-[0.3em] text-sm">
-            CHAPTER {chapter.chapter_number}
-          </p>
-          <p className="sanskrit text-xl mt-4">{chapter.name}</p>
-          <p className="text-muted-foreground italic mt-2">{chapter.meaning.en}</p>
+      <article className="chapter-article">
+        <header className="chapter-header">
+          <h1 className="chapter-title">{chapter.translation}</h1>
+          <p className="chapter-label">CHAPTER {chapter.chapter_number}</p>
+          <p className="sanskrit">{chapter.name}</p>
+          <p className="chapter-meaning">{chapter.meaning.en}</p>
         </header>
 
         <div className="chapter-divider" />
 
         {/* Chapter Summary */}
-        <div className="prose-book mb-16">
+        <div className="prose-book chapter-summary">
           <p className="drop-cap">{chapter.summary.en}</p>
         </div>
 
@@ -91,73 +82,48 @@ const GitaChapter = () => {
 
         {/* Verses */}
         <div className="prose-book">
-          <h2 className="text-center mb-12">Verses</h2>
+          <h2 className="verses-heading">Verses</h2>
 
-          <div className="space-y-6">
+          <div className="verse-list">
             {sloks.map((slok) => (
-              <div key={slok._id} >
+              <div key={slok._id}>
                 <button
                   onClick={() =>
                     setExpandedSlok(expandedSlok === slok.verse ? null : slok.verse)
                   }
-                  className="w-full text-left p-5 hover:bg-secondary/30 transition-colors cursor-pointer"
+                  className="verse-button"
                 >
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="toc-number text-5xl">{slok.verse}</span>
-                    <span className="font-serif font-semibold text-md text-muted-foreground">
-                      {slok._id}
-                    </span>
+                  <div className="verse-meta">
+                    <span className="toc-number verse-number">{slok.chapter}.{slok.verse}</span>
                   </div>
-                  <p className="font-serif leading-relaxed whitespace-pre-line">
-                    {slok.slok}
-                  </p>
-                  <p className="text-muted-foreground mt-2 italic whitespace-pre-line">
-                    {slok.transliteration}
-                  </p>
+                  <div className="verse-content">
+                    <p className="verse-slok">{slok.slok}</p>
+                    <p className="verse-transliteration">{slok.transliteration}</p>
+                  </div>
                 </button>
 
                 {expandedSlok === slok.verse && (
-                  <div className="border-t border-border/50 p-5 bg-secondary/10 space-y-6">
-                    <h3 className="text-center mb-4">Commentaries</h3>
+                  <div className="commentary-panel">
+                    <h3 className="commentary-heading">Choose the commentry from one of the following authors</h3>
                     {getAuthorCommentaries(slok).map((commentary) => (
-                      <div
-                        key={commentary.key}
-                        className="border-b border-border/30 pb-4 last:border-b-0"
-                      >
-                        <h4 className="font-display text-sm tracking-wider uppercase mb-2 text-accent">
-                          {commentary.author}
-                        </h4>
+                      <details key={commentary.key} className="commentary-item">
+                        <summary className="commentary-author">{commentary.author}</summary>
                         {commentary.et && (
-                          <p className="mb-2">{commentary.et}</p>
-                        )}
-                        {commentary.ht && (
-                          <p className="mb-2 text-muted-foreground">{commentary.ht}</p>
+                          <p className="commentary-text">{commentary.et}</p>
                         )}
                         {commentary.ec && (
-                          <details className="mt-2">
-                            <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-                              English Commentary
-                            </summary>
-                            <p className="mt-2">{commentary.ec}</p>
-                          </details>
+                          <p className="commentary-text">{commentary.ec}</p>
+                        )}
+                        {commentary.ht && (
+                          <p className="commentary-text">{commentary.ht}</p>
                         )}
                         {commentary.hc && (
-                          <details className="mt-2">
-                            <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-                              Hindi Commentary
-                            </summary>
-                            <p className="mt-2">{commentary.hc}</p>
-                          </details>
+                          <p className="commentary-text">{commentary.hc}</p>
                         )}
                         {commentary.sc && (
-                          <details className="mt-2">
-                            <summary className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-                              Sanskrit Commentary
-                            </summary>
-                            <p className="mt-2">{commentary.sc}</p>
-                          </details>
+                          <p className="commentary-text">{commentary.sc}</p>
                         )}
-                      </div>
+                      </details>
                     ))}
                   </div>
                 )}
