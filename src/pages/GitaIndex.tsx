@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BookHeader from "@/components/BookHeader";
-import { fetchChapters, type ChapterInfo } from "@/lib/api";
+import { fetchChapters, fetchSlok, type ChapterInfo, type Slok } from "@/lib/api";
 
 const GitaIndex = () => {
   const [chapters, setChapters] = useState<ChapterInfo[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSlok, setSelectedSlok] = useState<Slok | null>(null);
 
   useEffect(() => {
     fetchChapters()
@@ -13,6 +14,16 @@ const GitaIndex = () => {
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
+
+  // Pick a random verse once chapters are loaded
+  useEffect(() => {
+    if (chapters.length === 0) return;
+    const ch = chapters[Math.floor(Math.random() * chapters.length)];
+    const verse = Math.floor(Math.random() * ch.verses_count) + 1;
+    fetchSlok(ch.chapter_number, verse)
+      .then(setSelectedSlok)
+      .catch(console.error);
+  }, [chapters]);
 
   return (
     <div className="page-shell--flex">
@@ -28,7 +39,23 @@ const GitaIndex = () => {
           18 Chapters · 700 Verses
         </p>
       </section>
-
+      {selectedSlok && (<section className="verse-of-the-day">
+        <div key={selectedSlok._id} className="votd-container">
+          <h2 className="votd-heading">VERSE OF THE DAY</h2>
+          <Link
+            to={`/chapter/${selectedSlok.chapter}/verse/${selectedSlok.verse}`}
+            className="verse-button"
+          >
+            <div className="verse-meta">
+              <span className="toc-number verse-number">{selectedSlok.chapter}.{selectedSlok.verse}</span>
+            </div>
+            <div className="verse-content">
+              <p className="verse-slok">{selectedSlok.slok}</p>
+              <p className="verse-transliteration">{selectedSlok.transliteration}</p>
+            </div>
+          </Link>
+        </div>
+      </section>)}
       {/* Table of Contents */}
       <section className="toc-section">
         <div className="toc-container">
@@ -74,7 +101,7 @@ const GitaIndex = () => {
           <em>Powered by <a href="https://vedicscriptures.github.io">Vedic Scriptures API</a></em>
         </p>
         <p>
-          A web book designed to be read
+          The Song of God in Web format
         </p>
       </footer>
     </div>

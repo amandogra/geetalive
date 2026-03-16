@@ -382,15 +382,18 @@ a {
 }
 
 /* Table of contents section */
+.verse-of-the-day,
 .toc-section {
   padding: 5rem 1.5rem;
 }
 
+.votd-container,
 .toc-container {
   max-width: 42rem;
   margin: 0 auto;
 }
 
+.votd-heading,
 .toc-heading {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -532,6 +535,7 @@ a {
 /* Individual verse card */
 .verse-button {
   display: flex;
+  flex-direction:column;
   gap: 1.25rem;
   width: 100%;
   text-align: left;
@@ -549,7 +553,7 @@ a {
 }
 
 .verse-meta {
-  display: none;
+  display: flex;
   align-items: baseline;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
@@ -584,6 +588,9 @@ a {
   padding: 2rem;
   margin: auto;
   border-radius: 1rem;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
   /* max-width: 45rem; */
   .close-dialog-button {
     position: fixed;

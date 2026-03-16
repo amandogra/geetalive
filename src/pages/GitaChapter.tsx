@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BookHeader from "@/components/BookHeader";
 import ChapterNav from "@/components/ChapterNav";
 import { fetchChapter, fetchSlok, type ChapterInfo, type Slok } from "@/lib/api";
@@ -95,82 +95,56 @@ const GitaChapter = () => {
                   }}
                   className="verse-button"
                 >
-                  <div className="verse-meta">
-                    <span className="toc-number verse-number">{slok.chapter}.{slok.verse}</span>
-                  </div>
                   <div className="verse-content">
                     <p className="verse-slok">{slok.slok}</p>
                     <p className="verse-transliteration">{slok.transliteration}</p>
                   </div>
                 </button>
-                {/* expandedSlok === slok.verse && (
-                  <div className="commentary-panel">
-                    <h3 className="commentary-heading">Choose the commentry from one of the following authors</h3>
-                    {getAuthorCommentaries(slok).map((commentary) => (
-                      <details key={commentary.key} className="commentary-item">
-                        <summary className="commentary-author">{commentary.author}</summary>
-                        {commentary.et && (
-                          <p className="commentary-text">{commentary.et}</p>
-                        )}
-                        {commentary.ec && (
-                          <p className="commentary-text">{commentary.ec}</p>
-                        )}
-                        {commentary.ht && (
-                          <p className="commentary-text">{commentary.ht}</p>
-                        )}
-                        {commentary.hc && (
-                          <p className="commentary-text">{commentary.hc}</p>
-                        )}
-                        {commentary.sc && (
-                          <p className="commentary-text">{commentary.sc}</p>
-                        )}
-                      </details>
-                    ))}
-                  </div>
-                )*/}
               </div>
             ))}
           </div>
         </div>
-      </article >
+      </article>
 
       <dialog
         id="slokDescriptionDialog"
         className="slok-description-dialog"
         ref={dialogRef}
       >
-        <h3 className="commentary-heading">Commentaries</h3>
-        <p className="commentary-subheading">Choose the commentry from one of the following authors</p>
-        {expandedSlok && getAuthorCommentaries(expandedSlok).map((commentary) => (
-          <details key={commentary.key} className="commentary-item">
-            <summary className="commentary-author">{commentary.author}</summary>
-            {commentary.et && (
-              <p className="commentary-text">{commentary.et}</p>
+        {expandedSlok && (() => {
+          const prabhupada = getAuthorCommentaries(expandedSlok).find(
+            (c) => c.author.includes("Prabhupada")
+          );
+          return (<>
+            <h3 className="commentary-heading">Verse {expandedSlok.chapter}.{expandedSlok.verse}</h3>
+            {prabhupada ? (
+              <div className="commentary-item">
+                <h4 className="commentary-author">{prabhupada.author}</h4>
+                {prabhupada.et && <p className="commentary-text">{prabhupada.et}</p>}
+                {prabhupada.ec && <p className="commentary-text">{prabhupada.ec}</p>}
+              </div>
+            ) : (
+              <p className="commentary-text--muted">Commentary not available.</p>
             )}
-            {commentary.ec && (
-              <p className="commentary-text">{commentary.ec}</p>
-            )}
-            {commentary.ht && (
-              <p className="commentary-text">{commentary.ht}</p>
-            )}
-            {commentary.hc && (
-              <p className="commentary-text">{commentary.hc}</p>
-            )}
-            {commentary.sc && (
-              <p className="commentary-text">{commentary.sc}</p>
-            )}
-          </details>
-        ))}
+            <Link to={`/chapter/${expandedSlok.chapter}/verse/${expandedSlok.verse}`}
+              className="nav-link">
+              <span className="chapter-nav__label">
+                More details
+              </span>
+              <span className="chapter-nav__arrow">→</span>
+            </Link>
+          </>);
+        })()}
         <form method="dialog">
           <button
             id="closeDialogButton"
             className="close-dialog-button"
             onClick={() => { dialogRef?.current?.close(); }}
-          ><span className="sr-only">Close</span>x</button>
+          ><span className="sr-only">Close</span>X</button>
         </form>
       </dialog>
       <ChapterNav prevChapter={prevChapter} nextChapter={nextChapter} />
-    </div >
+    </div>
   );
 };
 
