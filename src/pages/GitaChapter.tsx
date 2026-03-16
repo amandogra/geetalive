@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookHeader from "@/components/BookHeader";
 import ChapterNav from "@/components/ChapterNav";
@@ -10,7 +10,8 @@ const GitaChapter = () => {
   const [chapter, setChapter] = useState<ChapterInfo | null>(null);
   const [sloks, setSloks] = useState<Slok[]>([]);
   const [loading, setLoading] = useState(true);
-  const [expandedSlok, setExpandedSlok] = useState<number | null>(null);
+  const [expandedSlok, setExpandedSlok] = useState<Slok | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -88,9 +89,10 @@ const GitaChapter = () => {
             {sloks.map((slok) => (
               <div key={slok._id}>
                 <button
-                  onClick={() =>
-                    setExpandedSlok(expandedSlok === slok.verse ? null : slok.verse)
-                  }
+                  onClick={() => {
+                    setExpandedSlok(expandedSlok === slok ? null : slok)
+                    dialogRef?.current?.showModal();
+                  }}
                   className="verse-button"
                 >
                   <div className="verse-meta">
@@ -101,8 +103,7 @@ const GitaChapter = () => {
                     <p className="verse-transliteration">{slok.transliteration}</p>
                   </div>
                 </button>
-
-                {expandedSlok === slok.verse && (
+                {/* expandedSlok === slok.verse && (
                   <div className="commentary-panel">
                     <h3 className="commentary-heading">Choose the commentry from one of the following authors</h3>
                     {getAuthorCommentaries(slok).map((commentary) => (
@@ -126,15 +127,50 @@ const GitaChapter = () => {
                       </details>
                     ))}
                   </div>
-                )}
+                )*/}
               </div>
             ))}
           </div>
         </div>
-      </article>
+      </article >
 
+      <dialog
+        id="slokDescriptionDialog"
+        className="slok-description-dialog"
+        ref={dialogRef}
+      >
+        <h3 className="commentary-heading">Commentaries</h3>
+        <p className="commentary-subheading">Choose the commentry from one of the following authors</p>
+        {expandedSlok && getAuthorCommentaries(expandedSlok).map((commentary) => (
+          <details key={commentary.key} className="commentary-item">
+            <summary className="commentary-author">{commentary.author}</summary>
+            {commentary.et && (
+              <p className="commentary-text">{commentary.et}</p>
+            )}
+            {commentary.ec && (
+              <p className="commentary-text">{commentary.ec}</p>
+            )}
+            {commentary.ht && (
+              <p className="commentary-text">{commentary.ht}</p>
+            )}
+            {commentary.hc && (
+              <p className="commentary-text">{commentary.hc}</p>
+            )}
+            {commentary.sc && (
+              <p className="commentary-text">{commentary.sc}</p>
+            )}
+          </details>
+        ))}
+        <form method="dialog">
+          <button
+            id="closeDialogButton"
+            className="close-dialog-button"
+            onClick={() => { dialogRef?.current?.close(); }}
+          ><span className="sr-only">Close</span>x</button>
+        </form>
+      </dialog>
       <ChapterNav prevChapter={prevChapter} nextChapter={nextChapter} />
-    </div>
+    </div >
   );
 };
 

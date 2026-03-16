@@ -19,7 +19,7 @@ const GitaIndex = () => {
       {/* Hero Cover */}
       <section className="book-header hero-cover">
         <h1 className="book-title">
-          BhagavaD GitA
+          Bhagavad Gita
         </h1>
         <p className="book-subtitle">
           The Song of God
