@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&display=swap'); */
+@import url('./fonts/et-book.css');
 
 /* ───────────────────────────────────────
    Design tokens
@@ -45,8 +46,8 @@
   --chapter-number: 30 80% 42%;
 
   /* Typography */
-  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'et-book', /*'Cormorant Garamond',*/ Georgia, 'Times New Roman', serif;
+  --font-display: 'Cinzel', /*'Cormorant Garamond',*/ Georgia, serif;
 }
 
 .dark {
@@ -323,11 +324,13 @@ a {
   font-family: var(--font-display);
   letter-spacing: 0.05em;
   font-weight: 600;
+  text-align: center;
 }
 
 .book-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
+  font-size: 2rem;
   font-weight: 500;
 }
 
@@ -359,7 +362,7 @@ a {
 
 .hero-cover .book-title {
   font-size: 3rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 10rem;
   color: hsl(var(--book-header-text));
 }
 
@@ -379,15 +382,18 @@ a {
 }
 
 /* Table of contents section */
+.verse-of-the-day,
 .toc-section {
   padding: 5rem 1.5rem;
 }
 
+.votd-container,
 .toc-container {
   max-width: 42rem;
   margin: 0 auto;
 }
 
+.votd-heading,
 .toc-heading {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -529,6 +535,7 @@ a {
 /* Individual verse card */
 .verse-button {
   display: flex;
+  flex-direction:column;
   gap: 1.25rem;
   width: 100%;
   text-align: left;
@@ -574,6 +581,44 @@ a {
   margin-top: 0.5rem;
   font-style: italic;
   white-space: pre-line;
+}
+
+/*slok description dialog*/
+.slok-description-dialog {
+  padding: 2rem;
+  margin: auto;
+  border-radius: 1rem;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+  /* max-width: 45rem; */
+  .close-dialog-button {
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+    appearance: none; /* Removes default browser styling */
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+    z-index: 50;
+    color: hsl(var(--foreground));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      color: white; /* White text */
+    }
+
+    &:focus {
+      outline: none; /* Removes default focus outline */
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus ring */
+    }
+  }
 }
 
 /* Commentary panel */
@@ -748,4 +793,18 @@ a {
 
 .not-found a:hover {
   color: hsl(var(--primary) / 0.9);
+}
+
+/* Voice Over/ Screen Reader software only */
+.sr-only {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* Prevents text from wrapping into a 1px width space */
 }
